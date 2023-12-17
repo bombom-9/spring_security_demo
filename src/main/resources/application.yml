@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: local
+    
+  # auto configure exclude list
+  autoconfigure:
+    exclude:
+       #- org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+     
+  # liquibase
+  liquibase:
+     enabled : false
+      
+  # thymeleaf 설정
+  thymeleaf:
+    check-template-location: true
+    prefix: classpath:/templates/   # .html 파일을 불러오기 위한 경로 설정(src/main/resources/templates)
+    suffix: .html   # 파일 확장자
+    cache: false
+    
+  # mvc
+  mvc:
+    static-path-pattern: /public/** # spring mvc 정적경로 변경
+    
+server:
+  port: 8080

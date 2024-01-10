@@ -22,5 +22,28 @@ spring:
   mvc:
     static-path-pattern: /public/** # spring mvc 정적경로 변경
     
+  # security
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          okta:
+            identityprovider:
+              verification:
+                credentials:
+                  - certificate-location: "classpath:metadata/Metadata-idp-okta.xml"
+              entity-id: "http://localhost:8080/saml2/service-provider-metadata/okta"
+              sso-url: "http://localhost:8080/login/saml2/sso/okta"
+            signing:
+              credentials:
+                - private-key-location: classpath:local.key
+                  certificate-location: classpath:local.crt
+            singlelogout:
+              binding: POST
+              response-url: "http://localhost:8080/logout/saml2/slo"
+            assertingparty:
+              metadata-uri: "classpath:metadata/Metadata-idp-okta.xml"
+    
 server:
   port: 8080
+  
